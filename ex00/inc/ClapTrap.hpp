@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 
-class Claptrap{
+class ClapTrap{
 	private:
 		std::string _name;
 		int _hitPoints;
@@ -14,12 +14,14 @@ class Claptrap{
 		int _attackDamage;
 
 	public:
-		Claptrap();
-		Claptrap(std::string name);
+		ClapTrap();
+		ClapTrap(const ClapTrap &copy);
+		ClapTrap(std::string name);
+		ClapTrap &operator=(const ClapTrap &src);
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-		~Claptrap();
+		~ClapTrap();
 };
 
 #endif

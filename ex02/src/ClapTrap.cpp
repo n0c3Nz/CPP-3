@@ -16,6 +16,22 @@ ClapTrap::ClapTrap(std::string name)
 	std::cout << "ClapTrap parameterized constructor called with name: " << name << std::endl ;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &copy)
+{
+	std::cout << "ClapTrap Copy Constructor called" << std::endl;
+	*this = copy;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &src)
+{
+	std::cout << "ClapTrap Assignation operator called" << std::endl;
+	this->_name = src._name;
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
+	return *this;
+}
+
 void ClapTrap::attack(const std::string& target)
 {
 	std::cout << _name << " ";

@@ -1,6 +1,6 @@
 #include <ClapTrap.hpp>
 
-Claptrap::Claptrap(){
+ClapTrap::ClapTrap(){
 	_name = "Not defined";
 	_hitPoints = 10;
 	_energyPoints = 10;
@@ -8,7 +8,7 @@ Claptrap::Claptrap(){
 	std::cout << "Default constructor called" << std::endl ;
 }
 
-Claptrap::Claptrap(std::string name)
+ClapTrap::ClapTrap(std::string name)
 {
 	_name = name;
 	_hitPoints = 10;
@@ -17,7 +17,23 @@ Claptrap::Claptrap(std::string name)
 	std::cout << "Parameterized constructor called" << std::endl ;
 }
 
-void Claptrap::attack(const std::string& target)
+ClapTrap::ClapTrap(const ClapTrap &copy)
+{
+	std::cout << "ClapTrap Copy Constructor called" << std::endl;
+	*this = copy;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &src)
+{
+	std::cout << "ClapTrap Assignation operator called" << std::endl;
+	this->_name = src._name;
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
+	return *this;
+}
+
+void ClapTrap::attack(const std::string& target)
 {
 	std::cout << _name << " ";
 	if (_energyPoints <= 0 || _hitPoints <= 0){
@@ -35,11 +51,11 @@ void Claptrap::attack(const std::string& target)
 	std::cout << "attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
 }
 
-void Claptrap::takeDamage(unsigned int amount){
+void ClapTrap::takeDamage(unsigned int amount){
 	_hitPoints -= amount;
 }
 
-void Claptrap::beRepaired(unsigned int amount){
+void ClapTrap::beRepaired(unsigned int amount){
 	std::cout << _name << " " ;
 	if (_energyPoints <= 0 || _hitPoints <= 0){
 		std::cout << "cannot do anything, ";
@@ -57,6 +73,6 @@ void Claptrap::beRepaired(unsigned int amount){
 	std::cout << "has repaired " << amount << " points" << std::endl;
 }
 
-Claptrap::~Claptrap() {
+ClapTrap::~ClapTrap() {
 	std::cout << "Destructor called" << std::endl;
 }
