@@ -36,19 +36,11 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &src)
 void ClapTrap::attack(const std::string& target)
 {
 	std::cout << _name << " ";
-	if (_energyPoints <= 0 || _hitPoints <= 0){
+	if (_hitPoints <= 0){
 		std::cout << "cannot do anything, ";
-		if (_hitPoints <= 0){
-			std::cout << "no hit points" << std::endl;
-			return;
-		}
-		if (_energyPoints <= 0){
-			std::cout << "no energy points" << std::endl;
-			return;
-		}
 	}
-	--_energyPoints;
 	std::cout << "attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	--_hitPoints;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
@@ -57,19 +49,11 @@ void ClapTrap::takeDamage(unsigned int amount){
 
 void ClapTrap::beRepaired(unsigned int amount){
 	std::cout << _name << " " ;
-	if (_energyPoints <= 0 || _hitPoints <= 0){
-		std::cout << "cannot do anything, ";
-		if (_hitPoints <= 0){
-			std::cout << "no hit points" << std::endl;
-			return;
-		}
-		if (_energyPoints <= 0){
-			std::cout << "no energy points" << std::endl;
-			return;
-		}
+	if (_energyPoints <= 0){
+		std::cout << "no energy points" << std::endl;
+		return;
 	}
-	--_energyPoints;
-	_hitPoints += amount;
+	_energyPoints--;
 	std::cout << "has repaired " << amount << " points" << std::endl;
 }
 

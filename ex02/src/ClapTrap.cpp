@@ -1,10 +1,11 @@
 #include <ClapTrap.hpp>
 
 ClapTrap::ClapTrap(){
+	_name = "Not defined";
 	_hitPoints = 10;
 	_energyPoints = 10;
 	_attackDamage = 0;
-	std::cout << "ClapTrap default constructor called" << std::endl ;
+	std::cout << "Default constructor called" << std::endl ;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -13,7 +14,7 @@ ClapTrap::ClapTrap(std::string name)
 	_hitPoints = 10;
 	_energyPoints = 10;
 	_attackDamage = 0;
-	std::cout << "ClapTrap parameterized constructor called with name: " << name << std::endl ;
+	std::cout << "Parameterized constructor called" << std::endl ;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
@@ -35,19 +36,11 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &src)
 void ClapTrap::attack(const std::string& target)
 {
 	std::cout << _name << " ";
-	if (_energyPoints <= 0 || _hitPoints <= 0){
+	if (_hitPoints <= 0){
 		std::cout << "cannot do anything, ";
-		if (_hitPoints <= 0){
-			std::cout << "no hit points" << std::endl;
-			return;
-		}
-		if (_energyPoints <= 0){
-			std::cout << "no energy points" << std::endl;
-			return;
-		}
 	}
-	--_energyPoints;
 	std::cout << "attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	--_hitPoints;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
@@ -56,22 +49,14 @@ void ClapTrap::takeDamage(unsigned int amount){
 
 void ClapTrap::beRepaired(unsigned int amount){
 	std::cout << _name << " " ;
-	if (_energyPoints <= 0 || _hitPoints <= 0){
-		std::cout << "cannot do anything, ";
-		if (_hitPoints <= 0){
-			std::cout << "no hit points" << std::endl;
-			return;
-		}
-		if (_energyPoints <= 0){
-			std::cout << "no energy points" << std::endl;
-			return;
-		}
+	if (_energyPoints <= 0){
+		std::cout << "no energy points" << std::endl;
+		return;
 	}
-	--_energyPoints;
-	_hitPoints += amount;
+	_energyPoints--;
 	std::cout << "has repaired " << amount << " points" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
