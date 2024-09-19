@@ -38,6 +38,16 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &src)
 	return *this;
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+	std::cout << "ScavTrap " << _name << " ";
+	if (_hitPoints <= 0){
+		std::cout << "cannot do anything, ";
+	}
+	std::cout << "attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	--_hitPoints;
+}
+
 ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap destructor called" << std::endl;
 }

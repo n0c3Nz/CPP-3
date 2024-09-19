@@ -11,6 +11,8 @@ int main()
 	derivada.attack("Marvin");
 	std::cout << "\n4 . Second Attack ---------------" << std::endl;
 	derivada2.attack("Marvin");
+	std::cout << "\n5 . Take Damage ---------------" << std::endl;
+	derivada2.takeDamage(10);
 	std::cout << "\n-----------------------" << std::endl;
 	derivada2.guardGate();
 	std::cout << "\n-----------------------" << std::endl;
